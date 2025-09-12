@@ -1,7 +1,6 @@
 package main
 
 import (
-	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
@@ -47,9 +46,9 @@ type AttackTrace struct {
 
 // ParentNode stores information about a node that is a parent (i.e., receives a callback)
 type ParentNode struct {
-	HierarchyPath []int
+	HierarchyPath  []int
 	InvocationHash [32]byte
-	ID            uint64
+	ID             uint64
 }
 
 // Compile processes the attack trace and generates the parent node list and grouped instructions.
@@ -58,7 +57,7 @@ func Compile(jsonData []byte, botAddress common.Address) (map[uint64][]CallInstr
 	if err := json.Unmarshal(jsonData, &trace); err != nil {
 		return nil, nil, fmt.Errorf("failed to unmarshal json: %w", err)
 	}
-	
+
 	botAddress = trace.BotContractAddress
 
 	parentNodeList := []ParentNode{}
@@ -67,9 +66,9 @@ func Compile(jsonData []byte, botAddress common.Address) (map[uint64][]CallInstr
 
 	// Add the main execution flow as the root parent
 	parentNodeList = append(parentNodeList, ParentNode{
-		HierarchyPath: []int{},
+		HierarchyPath:  []int{},
 		InvocationHash: [32]byte{}, // Special value for main execution
-		ID:            parentIdCounter,
+		ID:             parentIdCounter,
 	})
 	groupedInstructions[parentIdCounter] = []CallInstruction{}
 	parentIdCounter++
@@ -81,19 +80,19 @@ func Compile(jsonData []byte, botAddress common.Address) (map[uint64][]CallInstr
 			if err != nil {
 				return nil, nil, fmt.Errorf("failed to decode calldata for hierarchy %v: %w", call.Hierarchy, err)
 			}
-			
+
 			hash := keccak256(calldata)
-			
+
 			parentNodeList = append(parentNodeList, ParentNode{
-				HierarchyPath: call.Hierarchy,
+				HierarchyPath:  call.Hierarchy,
 				InvocationHash: hash,
-				ID:            parentIdCounter,
+				ID:             parentIdCounter,
 			})
 			groupedInstructions[parentIdCounter] = []CallInstruction{}
 			parentIdCounter++
 		}
 	}
-	
+
 	// Second pass: Assign instructions to their parent
 	for _, call := range trace.Calls {
 		if call.From == botAddress {
@@ -101,7 +100,7 @@ func Compile(jsonData []byte, botAddress common.Address) (map[uint64][]CallInstr
 			if len(call.Hierarchy) > 1 {
 				parentHierarchy = call.Hierarchy[:len(call.Hierarchy)-1]
 			}
-			
+
 			var parentID uint64
 			found := false
 			for _, pNode := range parentNodeList {
@@ -136,14 +135,14 @@ func Compile(jsonData []byte, botAddress common.Address) (map[uint64][]CallInstr
 			if err != nil {
 				return nil, nil, fmt.Errorf("failed to decode calldata for instruction %v: %w", call.Hierarchy, err)
 			}
-			
+
 			instruction := CallInstruction{
 				CallType: ct,
 				Target:   call.Target,
 				Value:    value,
 				CallData: callData,
 			}
-			
+
 			groupedInstructions[parentID] = append(groupedInstructions[parentID], instruction)
 		}
 	}
@@ -151,11 +150,10 @@ func Compile(jsonData []byte, botAddress common.Address) (map[uint64][]CallInstr
 	return groupedInstructions, parentNodeList, nil
 }
 
-
 func keccak256(data []byte) [32]byte {
-    hasher := sha3.NewLegacyKeccak256()
-    hasher.Write(data)
-    var hash [32]byte
-    hasher.Sum(hash[:0])
-    return hash
+	hasher := sha3.NewLegacyKeccak256()
+	hasher.Write(data)
+	var hash [32]byte
+	hasher.Sum(hash[:0])
+	return hash
 }
