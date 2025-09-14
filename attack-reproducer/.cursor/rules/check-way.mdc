@@ -1,0 +1,39 @@
+---
+description: |
+  # Encoder-Decoder 项目端到端测试流程
+
+  这是经过修正的标准测试流程，用于在 Hardhat 主网分叉环境中执行和验证攻击策略。
+
+  ## 前提
+
+  1.  **Hardhat 配置**: 确保 `hardhat.config.js` 已配置好 Mainnet forking 的 RPC URL。
+  2.  **Go 执行器配置 (仅首次)**:
+      *   打开 `go-executor/main.go` 文件。
+      *   确保 `rpcEndpoint` 设置为 `"http://127.0.0.1:8545"`。
+      *   确保 `privateKeyHex` 设置为 Hardhat 节点启动时输出的**第一个账户的私钥**（注意：不带`0x`前缀）。
+
+  ## 标准测试周期
+
+  1.  **启动分叉节点**
+      *   在项目根目录 (`encoder-decoder`) 打开一个终端。
+      *   运行命令: `npx hardhat node`
+
+  2.  **部署合约**
+      *   打开**另一个**终端。
+      *   运行命令: `npx hardhat run scripts/deploy.js --network localhost`
+      *   **关键**: 从输出中复制新部署的 `UniversalInterpreter` 合约地址。
+
+  3.  **配置策略文件**
+      *   打开你的目标策略 JSON 文件 (例如 `strategies/aave_flashloan_curve_arbitrage/strategy.json`)。
+      *   **关键**: 将文件中的 `bot_contract_address` 字段更新为上一步复制的**新合约地址**。这是整个流程的核心，确保了编码和交易发送地址的统一。
+
+  4.  **执行交易**
+      *   `cd go-executor`
+      *   运行命令: `go run . ../strategies/path/to/your/strategy.json`
+      *   程序会自动等待交易被打包。确认终端最终输出 `Transaction successful!`，这代表交易已成功上链。
+
+  5.  **验证结果 (可选)**
+      *   根据所选策略，使用 `scripts/analyze-tx.js` 或其他验证脚本来确认交易是否达到了预期的经济效果。
+globs:
+alwaysApply: true
+---

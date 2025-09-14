@@ -1,0 +1,38 @@
+{
+    "attack_name": "Unilend Logic Flaw Exploit (2025-01-12) - Corrected v2",
+    "bot_contract_address": "0x0000000000000000000000000000000000000000",
+    "calls": [
+        {
+            "hierarchy": [],
+            "call_type": "CALL",
+            "target": "0x105b229C99c5945A385054A32238421Ab5202611",
+            "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+            "value": "0",
+            "calldata": "0x536f4a86000000000000000000000000deadbeefdeadbeefdeadbeefdeadbeefdeadbeef000000000000000000000000ae78736cd615f374d3085123a210448e74fc63930000000000000000000000000000000000000000000000000de0b6b3a76400000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+            "hierarchy": [1],
+            "call_type": "CALL",
+            "target": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+            "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+            "value": "0",
+            "calldata": "0x095ea7b3000000000000000000000000105b229C99c5945A385054A32238421Ab5202611ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        {
+            "hierarchy": [1, 1],
+            "call_type": "CALL",
+            "target": "0x105b229C99c5945A385054A32238421Ab5202611",
+            "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+            "value": "0",
+            "calldata": "0xde79118b000000000000000000000000000000000000000000000000000000000000000a"
+        },
+        {
+            "hierarchy": [1, 1, 1],
+            "call_type": "CALL",
+            "target": "0x105b229C99c5945A385054A32238421Ab5202611",
+            "from": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+            "value": "0",
+            "calldata": "0xdb006a75000000000000000000000000000000000000000000000000000000000000000a"
+        }
+    ]
+}

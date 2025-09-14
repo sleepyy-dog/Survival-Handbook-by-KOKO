@@ -26,3 +26,21 @@ git push
 git config --global --unset http.proxy
 ```
 
+注意当你不小心放入大于100MB的文件并add后情况会变得很麻烦（尽量避免）
+
+解决方式如下
+
+```cmd
+# 从所有历史记录中删除大文件
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch '课程/大三上/数理统计/数理统计学导论（原书第7版）原书中文版.pdf'" \
+  --prune-empty --tag-name-filter cat -- --all
+
+# 清理垃圾文件
+git reflog expire --expire=now --all
+git gc --prune=now --aggressive
+
+# 4. 强制推送
+git push origin main --force
+
+```
