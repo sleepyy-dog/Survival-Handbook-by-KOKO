@@ -10,7 +10,7 @@
 
 可以持续更新的栏目。会上传课程笔记（md）和作业（md或者m源文件），仓库里还放了几个优化笔记相关的提示词。
 
-当前还是使用md追求速度，后续如果有时间整理的话可以转成$\LaTeX$。
+当前还是使用md追求速度，后续如果有时间整理的话可以转成latex。
 
 大三上学期的课程：
 
@@ -25,8 +25,8 @@
 
 涵盖的内容：
 
-* 原创数模国赛$\LaTeX$模板（已经提交到overleaf和[texpage](https://www.texpage.com/zh/template/4c847050-151c-4c7e-8db7-e2dd71e3d465/)上开源）
-* 原创大作业$\LaTeX$模板
+* 原创数模国赛latex模板（已经提交到overleaf和[texpage](https://www.texpage.com/zh/template/4c847050-151c-4c7e-8db7-e2dd71e3d465/)上开源）
+* 原创大作业latex模板
 * 数模比赛相关的六段提示词（内容审查，撰写云云）
 * 流程总结（看起来不起眼其实挺重要）
 
