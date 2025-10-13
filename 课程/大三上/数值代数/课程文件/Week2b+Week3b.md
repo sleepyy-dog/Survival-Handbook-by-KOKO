@@ -1,4 +1,6 @@
-# 范数
+
+
+# Week2b+Week3b
 
 ## 向量范数
 
@@ -81,3 +83,33 @@ $$
 前两条是显然的。
 
 二范数需要一点高代知识。
+
+![image-20250926142458969](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509261425040.png)
+
+谱范数的性质：
+
+![image-20250926142556955](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509261425988.png)
+
+（2）和（3）的左边等号是显然的，进而可以得到（3）的右边等号。
+
+（1）的证明较有难度。思路是证明$\leq \geq$得到。需要借用一个命题（柯西-施瓦茨不等式）：
+
+$$
+\|z\|_2 = \max_{\|y\|_2=1} |y^H z|
+$$
+![image-20250926144914237](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509261449307.png)
+
+引入谱半径：
+
+![image-20250926145005698](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509261450787.png)
+
+注意这里的$|\cdot|$为模而非绝对值。
+
+![image-20250926145316108](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509261453215.png)
+
+![image-20250926150025137](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509261500223.png)
+
+以下（2）即纽曼公式。
+
+![image-20250926150634579](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509261506677.png)
+
