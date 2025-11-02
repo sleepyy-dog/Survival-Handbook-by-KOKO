@@ -1,5 +1,7 @@
 # 数学建模与实验9.8
 
+### 笔记地址：  https://github.com/sleepyy-dog/Survival-Handbook-by-KOKO
+
 助教：徐泉泉，欧瀚祺
 
 教师：李露

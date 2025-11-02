@@ -128,15 +128,40 @@ $$
 >         *   $S < 0$：表示有质量汇，例如物质被消耗掉或从系统中被移走（比如一个带孔的水管）。
 >         *   在绝大多数宏观流体力学问题中，质量是守恒的，所以我们通常设 $S = 0$。
 
-![image-20250918111738609](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509181117963.png)
-
-![image-20250918111802194](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509181118330.png)
-
-![image-20250918114235089](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509181142603.png)
-
-![image-20250918114248493](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509181142905.png)
-
-![image-20250918115419608](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509181154095.png)
+几个特例：
+$1^{\circ}$ 速度为已知常向量时，方程变为
+$$
+\frac{\partial\rho}{\partial t}+v\cdot\nabla\rho=0.
+\label{1.29}
+$$
+这是一个关于$\rho$的一阶偏微分方程。
+$2^{\circ}$ 流体不可压缩，即$\rho$为常数时方程变为
+$$
+\nabla\cdot v=0.
+\label{1.30}
+$$
+$3^{\circ}$ 不可压缩无旋运动
+在所考虑的流场中若每一个质点都没有运动的转动部分，即
+在流场中每一点有
+$$
+\text{rot}~v=0,
+\label{1.31}
+$$
+那么人们称流体的运动是无旋的。
+在数学分析中我们已经知道，由$\ref{1.31}$确定的流场是有势的，即存在函数$\varphi$(速度势)，使得
+$$
+v = \nabla \varphi.
+$$
+如果区域是单连通的，那么$\varphi$是一个单值函数。
+假如流体不可压缩，那么由$(1.30)$知
+$$
+\nabla \cdot v = 0,
+$$
+即
+$$
+\nabla \cdot \nabla \varphi = \Delta \varphi = 0.
+$$
+这表示对于不可压缩流体，若运动是无旋的，那么速度势$\varphi$适合$Laplace$方程。
 
 ### 3. 位势方程 (Potential Equation)
 
@@ -239,15 +264,58 @@ $$
 #### 考点<a id="point1">1</a>：简化热传导方程
 **这里的考点是通过更多的条件构造$f$和$\Delta u$来化简方程**。
 
-![image-20250918101650809](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509181016134.png)
+例1 如果物体可看成一根细杆，它的侧表面绝热，它与周围介质的热交换只在杆的两端$x=0$和$x=l$进行；如果在任意一个与杆的轴线垂直的截面上，初始温度和热源强度的变化很小，那么我们可以近似地认为杆上的温度分布只依赖于截面的位置。因此
+如果取杆的轴线为$x$轴，那么方程$(1.19)$可改写为
+$$
+\frac{\partial u}{\partial t} - a^2 \frac{\partial^2 u}{\partial x^2} = f(x,t),
+\label{1.24}
+$$
+我们称它为一维热传导方程。
 
-![image-20250918101705780](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509181017973.png)
+如果取杆的轴线为$x$轴，那么方程$(1.19)$可改写为
+$$
+\frac{\partial u}{\partial t} - a^2 \frac{\partial^2 u}{\partial x^2} = f(x,t),
+\label{eq:1.24}
+$$
+我们称它为一维热传导方程。
 
 关于为什么$f$只和$x$有关，是因为我们只考虑杠这个区域，而在截面热源强度基本不变，自然而然所有热源都只和$x$有关。
 
 还有以下例子：
 
-![image-20250918103816174](https://sleepy-dog-1376908035.cos.ap-guangzhou.myqcloud.com/202509181038619.png)
+例2 考虑一半径为$R$的球体，它通过球表面与周围介质有热交换。如果在球面上所有各点所受周围介质的影响都相同，且球内任意一点的初始温度和热源强度只依赖于它到球心的距离而与它的方位无关，那么如果我们选取以球心为坐标原点，并引进球坐标，由于$r^2 = x_1^2+x_2^2+x_3^2$，从而球内的温度$u = u(r,t)$，
+
+$$
+\frac{\partial u}{\partial x_i} = \frac{x_i}{r} \frac{\partial u}{\partial r},
+$$
+
+$$
+\frac{\partial^2 u}{\partial x_i^2} = \frac{x_i^2}{r^2} \frac{\partial^2 u}{\partial r^2} + \frac{r^2-x_i^2}{r^3} \frac{\partial u}{\partial r}.
+$$
+
+从而
+
+$$
+\Delta u = \sum_{i=1}^3 \frac{\partial^2 u}{\partial x_i^2} = \frac{\partial^2 u}{\partial r^2} + \frac{2}{r} \frac{\partial u}{\partial r}.
+$$
+
+于是$u(r,t)$适合方程
+
+$$
+\frac{\partial u}{\partial t} - a^2 \left( \frac{\partial^2 u}{\partial r^2} + \frac{2}{r} \frac{\partial u}{\partial r} \right) = f(r,t),
+\label{eq:1.25}
+$$
+
+我们称它为球对称问题的热传导方程。
+
+例3 考虑一高为$H$，半径为$R$的圆柱形物体。引入柱坐标系，取柱体的轴线为$z$轴，下底落在$z=0$平面上。假设在柱体的侧表面和上、下底上给出的边界条件只分别依赖于$z$和$r$(点到轴线的距离)，且柱体初始温度和内部热源亦只是$r$、$z$的函数。这样，在柱体内温度$u=u(r,z,t)$适合方程(推导过程与例2类似)
+
+$$
+\frac{\partial u}{\partial t} - a^2 \left( \frac{\partial^2 u}{\partial r^2} + \frac{1}{r} \frac{\partial u}{\partial r} + \frac{\partial^2 u}{\partial z^2} \right) = f(r,z,t).
+\label{eq:1.26}
+$$
+
+这是一个二维轴对称问题的热传导方程。
 
 **这条式子相信是重要的：**
 $$
